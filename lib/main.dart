@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: "Inter-Regular.ttf"),
-      home: LandingScreen(),
+      //home: LandingScreen(),
     );
   }
 }
