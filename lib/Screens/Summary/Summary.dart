@@ -16,6 +16,7 @@ class _SummaryState extends State<Summary> {
     "Walk-in appointment",
   ];
 
+  // ignore: unused_field
   int _selectedIndex = 0;
 
   chanegindex(int value) {

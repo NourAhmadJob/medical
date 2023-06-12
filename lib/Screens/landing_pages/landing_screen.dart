@@ -6,7 +6,7 @@ import '../intro_pages/intro_screen_1.dart';
 import '../intro_pages/intro_screen_2.dart';
 import '../intro_pages/intro_screen_3.dart';
 import '../selcettype/selcettype.dart';
-import '../sign_in/sign_in.dart';
+
 import 'landing_screen_controller.dart';
 
 class LandingScreen extends StatelessWidget {

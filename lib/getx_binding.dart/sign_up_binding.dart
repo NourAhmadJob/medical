@@ -1,9 +1,10 @@
 import 'package:get/get.dart';
-import 'package:medical_u/Screens/sign_up/sign_up_controller.dart';
+import 'package:medical_u/controller/sign_up_controller.dart';
 
-class SignUpbinding implements Bindings {
+
+class SignUpBindings implements Bindings {
   @override
   void dependencies() {
-    Get.put<SignUpController>(SignUpController());
+    Get.put<SignUpController>(SignUpController()..getAllCities());
   }
 }

@@ -66,6 +66,7 @@ class _BottomtwoState extends State<Bottomtwo>
     "The Great Power of Mind",
   ];
 
+  // ignore: unused_field
   late TabController _tabController;
 
   @override
@@ -257,7 +258,7 @@ class _BottomtwoState extends State<Bottomtwo>
                 Column(
                   children: [
                     Container(
-                      padding: const EdgeInsets.all(12.0),
+                      padding: const EdgeInsets.all(5.0),
                       child: GridView.builder(
                         shrinkWrap: true,
                         physics: const BouncingScrollPhysics(),
@@ -316,7 +317,7 @@ class _BottomtwoState extends State<Bottomtwo>
                 ),Column(
                   children: [
                     Container(
-                      padding: const EdgeInsets.all(12.0),
+                      padding: const EdgeInsets.all(5.0),
                       child: GridView.builder(
                         shrinkWrap: true,
                         physics: const BouncingScrollPhysics(),

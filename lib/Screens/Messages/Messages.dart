@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:medical_u/constant/app_asset.dart';
 
 class Messages extends StatefulWidget {

@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../constant/app_asset.dart';
+import 'package:medical_u/Screens/sign_in/signin_controller.dart';
 import '../../widgets/intro_button.dart';
-import '../sign_up/sign_up.dart';
 
-class Signin extends StatefulWidget {
-  const Signin({Key? key}) : super(key: key);
+
+SignInController  controller = Get.put(SignInController());
+
+class SignIn extends StatefulWidget {
+  const SignIn({Key? key}) : super(key: key);
 
   @override
-  State<Signin> createState() => _SigninState();
+  State<SignIn> createState() => _SignInState();
 }
 
-class _SigninState extends State<Signin> {
+class _SignInState extends State<SignIn> {
   Color getColor(Set<MaterialState> states) {
     const Set<MaterialState> interactiveStates = <MaterialState>{
       MaterialState.pressed,
@@ -27,6 +28,9 @@ class _SigninState extends State<Signin> {
 
   bool isChecked = false;
   bool passwordVisible2 = true;
+
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -80,11 +84,11 @@ class _SigninState extends State<Signin> {
                         const Padding(
                           padding: EdgeInsets.only(top: 10),
                           child: Text(
-                            "Welocme to WeCare ",
+                            "Welcome to WeCare ",
                             style: TextStyle(
                               fontWeight: FontWeight.w400,
                               color: Color(0xff667085),
-                              fontSize: 14,
+                              fontSize: 18,
                             ),
                           ),
                         ),
@@ -93,6 +97,10 @@ class _SigninState extends State<Signin> {
                           width: 335,
                           height: 52,
                           child: TextField(
+                            controller: emailController,
+                            onChanged: (value) {
+                             // controller.email = value;
+                            },
                             keyboardType: TextInputType.emailAddress,
                             decoration: InputDecoration(
                               focusedBorder: OutlineInputBorder(
@@ -114,6 +122,10 @@ class _SigninState extends State<Signin> {
                           width: 335,
                           height: 52,
                           child: TextField(
+                            controller: passwordController,
+                            onChanged: (value) {
+                            //  controller.password = value;
+                            },
                             obscureText: passwordVisible2,
                             keyboardType: TextInputType.visiblePassword,
                             decoration: InputDecoration(
@@ -126,7 +138,7 @@ class _SigninState extends State<Signin> {
                                 ),
                                 onPressed: () {
                                   setState(
-                                    () {
+                                        () {
                                       passwordVisible2 = !passwordVisible2;
                                     },
                                   );
@@ -156,7 +168,7 @@ class _SigninState extends State<Signin> {
                                 ),
                                 checkColor: Colors.white,
                                 fillColor:
-                                    MaterialStateProperty.resolveWith(getColor),
+                                MaterialStateProperty.resolveWith(getColor),
                                 value: isChecked,
                                 onChanged: (bool? value) {
                                   setState(() {
@@ -193,6 +205,10 @@ class _SigninState extends State<Signin> {
                           height: 40,
                         ),
                         IntroButton(
+                          onTap: () {
+                          controller.SignIn(email: emailController.text, password: passwordController.text);
+                               //Get.to('/LandingScreen');
+                          },
                           title: "Sign In",
                           height: 56,
                           width: 335,
@@ -222,46 +238,45 @@ class _SigninState extends State<Signin> {
                             ),
                           ],
                         ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        Container(
-                          height: 56,
-                          width: 335,
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                  width: 1, color: Colors.grey.shade300),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(16))),
-                          child: Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image(
-                                    image: AssetImage(
-                                      AppAssets.goolelogo,
-                                    ),
-                                    height: 35),
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                const Text(
-                                  "Sign in with Google",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 40,
-                        ),
+                        //const SizedBox(
+                        //  height: 30,
+                        // ),
+                        //Container(
+                        //  height: 56,
+                        //width: 335,
+                        //decoration: BoxDecoration(
+                        //  border: Border.all(
+                        //    width: 1, color: Colors.grey.shade300),
+                        //borderRadius:
+                        //  const BorderRadius.all(Radius.circular(16))),
+                        // child: Center(
+                        //   child: Row(
+                        //     mainAxisAlignment: MainAxisAlignment.center,
+                        //     children: [
+                        //       Image(
+                        //           image: AssetImage(
+                        //             AppAssets.googlelogo,
+                        //           ),
+                        //           height: 35),
+                        //       const SizedBox(
+                        //         width: 10,
+                        //       ),
+                        //       const Text(
+                        //         "Sign in with Google",
+                        //         style: TextStyle(
+                        //           fontWeight: FontWeight.w700,
+                        //         ),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
+
+                        //const SizedBox(
+                        //height: 40,
+                        //),
                         GestureDetector(
                           onTap: () {
-                            Get.to(const SingUp(),
-                                transition: Transition.rightToLeft);
+                           Get.offAllNamed('/sign_up');
                           },
                           child: Container(
                             height: 30,
@@ -300,4 +315,17 @@ class _SigninState extends State<Signin> {
       ),
     );
   }
+
+  // void onClicksigin() async {
+  //
+  //   await controller.onClicksigin();
+  //   if (controller.signInStatus) {
+  //     EasyLoading.showSuccess('success');
+  //     Get.toNamed('/HomePage');
+  //   } else {
+  //     EasyLoading.showError(controller.message,
+  //         duration: Duration(seconds: 2), dismissOnTap: true);
+  //     print('error');
+  //   }
+  // }
 }

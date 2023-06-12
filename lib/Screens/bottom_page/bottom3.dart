@@ -12,23 +12,15 @@ class Bottomthree extends StatefulWidget {
 }
 
 class _BottomthreeState extends State<Bottomthree> {
-  List<String> Exploreby = [
-    "  Covid\nEssential",
-    "    Skin\ndesieses",
-    "Sexual",
-    "General",
-    "Vitamin",
-    "Essential",
-  ];
+  // List<String> Exploreby = [
+  //   "  Covid\nEssential",
+  //   "    Skin\ndesieses",
+  //   "Sexual",
+  //   "General",
+  //   "Vitamin",
+  //   "Essential",
+  // ];
 
-  List images = [
-    AppAssets.medicine1,
-    AppAssets.medicine2,
-    AppAssets.medicine3,
-    AppAssets.medicine4,
-    AppAssets.medicine5,
-    AppAssets.medicine6,
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +50,7 @@ class _BottomthreeState extends State<Bottomthree> {
                   suffixIcon: const Icon(Icons.search, color: Color(0xff1C208F)),
                   focusedBorder: OutlineInputBorder(
                     borderSide:
-                        const BorderSide(color: Color(0xff1C208F), width: 1.0),
+                        const BorderSide(color: Color(0xff1c5f8f), width: 1.0),
                     borderRadius: BorderRadius.circular(16),
                   ),
                   enabledBorder: OutlineInputBorder(
@@ -93,7 +85,7 @@ class _BottomthreeState extends State<Bottomthree> {
                 itemBuilder: (context, index) {
                   return InkWell(
                     onTap: () {
-                      Get.to(const Vitamins(),transition: Transition.rightToLeft);
+                     // Get.to(const Vitamins(),transition: Transition.rightToLeft);
                     },
                     child: Column(
                       children: [
@@ -105,21 +97,15 @@ class _BottomthreeState extends State<Bottomthree> {
                               borderRadius: BorderRadius.circular(20)),
                           child: Padding(
                             padding: const EdgeInsets.only(left: 0),
-                            child: Image(
-                              image: AssetImage(images[index].toString()),
+                            // child: Image(
+                              // image: AssetImage(images[index].toString()),
                             ),
                           ),
-                        ),
+
                         const SizedBox(
                           height: 5,
                         ),
-                        Center(
-                          child: Text(Exploreby[index],
-                              style: const TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 14)),
-                        ),
+
                       ],
                     ),
                   );

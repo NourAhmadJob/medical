@@ -52,7 +52,7 @@ class _SelectypeState extends State<Selectype> {
                   ),
                   InkWell(
                     onTap: () {
-                      Get.to(const Signin(),
+                      Get.to(const SignIn(),
                           transition: Transition.rightToLeft);
                     },
                     child: Container(

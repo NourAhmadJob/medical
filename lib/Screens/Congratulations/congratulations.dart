@@ -23,13 +23,6 @@ class _CongratulationsState extends State<Congratulations> {
             Row(
               children: const [
                 Padding(
-                  padding: EdgeInsets.only(top: 60, left: 25),
-                  child: Icon(
-                    Icons.arrow_back_outlined,
-                    size: 25,
-                  ),
-                ),
-                Padding(
                   padding: EdgeInsets.only(top: 60, left: 10),
                   child: Text("Account",
                       style:
@@ -68,7 +61,7 @@ class _CongratulationsState extends State<Congratulations> {
             ),
             InkWell(
               onTap: () {
-                Get.to(HomePage(), transition: Transition.rightToLeft);
+               Get.off(() => HomePage());
               },
               child: IntroButton(
                 title: "Go Home",

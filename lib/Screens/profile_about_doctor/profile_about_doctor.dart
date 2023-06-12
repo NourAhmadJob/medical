@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:medical_u/controller/appointment_controller.dart';
+import 'package:medical_u/model/appointment/doctor_available_days.dart';
+import 'package:medical_u/model/famous_model.dart';
 import '../../constant/app_asset.dart';
 import '../../widgets/intro_button.dart';
 import '../Book_Appointment/Book_Appointment.dart';
 
 class Profileabout extends StatefulWidget {
-  const Profileabout({Key? key}) : super(key: key);
+  final FamousDoctorModel famousDoctorModel;
+
+  Profileabout({super.key, required this.famousDoctorModel});
 
   @override
-  State<Profileabout> createState() => _ProfileaboutState();
+  State<Profileabout> createState() =>
+      _ProfileaboutState(famousDoctorModel: famousDoctorModel );
 }
 
 class _ProfileaboutState extends State<Profileabout> {
@@ -17,119 +22,195 @@ class _ProfileaboutState extends State<Profileabout> {
     "I recently had the pleasure of seeing Dr. John Doe for a routine check-up and was extremely impressed with the level of care and attention he provided.",
     "I've been a patient of Dr. Jane Smith for several years now and have always had a positive experience. She is knowledgea",
   ];
-
   List<String> images = [
     AppAssets.doctor1,
     AppAssets.doctor2,
   ];
+  final FamousDoctorModel famousDoctorModel;
+
+  _ProfileaboutState({required this.famousDoctorModel});
+
+  List listDays = [];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 50, left: 15),
-                  child: InkWell(
-                    onTap: () {
-                      Get.back();
-                    },
-                    child: const Icon(
-                      Icons.arrow_back_outlined,
-                      size: 25,
+    return GetBuilder<AppointmentController>(
+      init: AppointmentController()..getAllDoctorAvaliableDays(id_doctor: famousDoctorModel.id),
+      builder: (controller3)=> Scaffold(
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 50, left: 15),
+                    child: InkWell(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: const Icon(
+                        Icons.arrow_back_outlined,
+                        size: 25,
+                      ),
                     ),
                   ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.only(top: 50, left: 10),
-                  child: Text("Profile",
-                      style:
-                          TextStyle(fontWeight: FontWeight.w600, fontSize: 16)),
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 30),
-              child: CircleAvatar(
-                backgroundColor: Colors.white,
-                maxRadius: 50,
-                backgroundImage: AssetImage(AppAssets.doctor1),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 50, left: 10),
+                    child: Text("Profile",
+                        style:
+                            TextStyle(fontWeight: FontWeight.w600, fontSize: 16)),
+                  ),
+                ],
               ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            const Text("Dr. Jane Smith",
-                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18)),
-            const SizedBox(
-              height: 5,
-            ),
-            const Text("Cardiologist",
-                style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14)),
-            const SizedBox(
-              height: 30,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
+              Padding(
+                padding: const EdgeInsets.only(top: 30),
+                child: CircleAvatar(
+                  backgroundColor: Colors.white,
+                  maxRadius: 50,
+                  backgroundImage: AssetImage(AppAssets.doctor1),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Text(famousDoctorModel.name.toString(),
+                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18)),
+              const SizedBox(
+                height: 5,
+              ),
+              Text(famousDoctorModel.gnr != null ? famousDoctorModel.gnr!.name_ar.toString() : "",
+                  style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14)),
+              const SizedBox(
+                height: 30,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("From Time",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w400, fontSize: 14)),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text("${famousDoctorModel.from_time.toString()}",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w600, fontSize: 18)),
+                    ],
+                  ),
+                  Container(color: Colors.grey, height: 40, width: 1),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("To Time ",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w400, fontSize: 14)),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(famousDoctorModel.to_time.toString(),
+                          style: TextStyle(
+                              fontWeight: FontWeight.w600, fontSize: 18)),
+                    ],
+                  ),
+                  Container(color: Colors.grey, height: 40, width: 1),
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Container(
+                margin: const EdgeInsets.only(left: 28.0, right: 20.0),
+                alignment: Alignment.topLeft,
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text("Patients",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w400, fontSize: 14)),
-                    SizedBox(
-                      height: 5,
+                  children: [
+                    Text(
+                      "About : ",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 25.0,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
-                    Text("120+",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600, fontSize: 18)),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    Text(famousDoctorModel.specialization_ar != null ? famousDoctorModel.specialization_ar! : ""),
                   ],
                 ),
-                Container(color: Colors.grey, height: 40, width: 1),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text("Exp",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w400, fontSize: 14)),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Text("10 Yrs",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600, fontSize: 18)),
-                  ],
-                ),
-                Container(color: Colors.grey, height: 40, width: 1),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text("Rating",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w400, fontSize: 14)),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Text("4.7",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18,
-                            color: Color(0xff36C8FF))),
-                  ],
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            _tabSection(context),
-          ],
+              ),
+              SizedBox(
+                height: 25.0,
+              ),
+              Container(
+                height: 96,
+                width: 375,
+                color: const Color(0xffC3EFFF),
+                child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Slot Time",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w400, fontSize: 14)),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text(famousDoctorModel.slot_time.toString(),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w600, fontSize: 18)),
+                        ],
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const [],
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          GetBuilder<AppointmentController>(
+                            init: AppointmentController()..avaliableDays,
+                           builder: (controller3)=> InkWell(
+                              child: Container(
+                                height: 56,
+                                width: 168,
+                                decoration: BoxDecoration(
+                                    color: const Color(0xff1C208F),
+                                    borderRadius: BorderRadius.circular(12)),
+                                child: const Center(
+                                  child: Text("Book Now",
+                                      style: TextStyle(color: Colors.white)),
+                                ),
+                              ),
+                              onTap: () {
+                                DoctorAvaliableDays doctorA = controller3.doctorAvaliableDays!;
+                                var x = controller3.getDays(doctorA);
+                                Get.to(
+                                    Bookappointment(
+                                      id_doctor: famousDoctorModel.id,
+                                      listDay:  x,
+                                    ),
+                                    transition: Transition.rightToLeft);
+                              },
+                            ),
+                          )
+                        ],
+                      ),
+                    ]),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -248,59 +329,63 @@ class _ProfileaboutState extends State<Profileabout> {
                     const SizedBox(
                       height: 30,
                     ),
-                    Container(
-                      height: 96,
-                      width: 375,
-                      color: const Color(0xffC3EFFF),
-                      child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const [
-                                Text("Patients",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 14)),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text("120+",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 18)),
-                              ],
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const [
-                                Text("\$20",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 24)),
-                              ],
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  height: 56,
-                                  width: 168,
-                                  decoration: BoxDecoration(
-                                      color: const Color(0xff1C208F),
-                                      borderRadius: BorderRadius.circular(16)),
-                                  child: const Center(
-                                    child: Text("Book Now",
-                                        style: TextStyle(color: Colors.white)),
+                    Expanded(
+                      child: Container(
+                        height: 96,
+                        width: 375,
+                        color: const Color(0xffC3EFFF),
+                        child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: const [
+                                  Text("Patients",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 14)),
+                                  SizedBox(
+                                    height: 5,
                                   ),
-                                )
-                              ],
-                            ),
-                          ]),
+                                  Text("120+",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 18)),
+                                ],
+                              ),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: const [
+                                  Text("\$20",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 24)),
+                                ],
+                              ),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    height: 56,
+                                    width: 168,
+                                    decoration: BoxDecoration(
+                                        color: const Color(0xff1C208F),
+                                        borderRadius:
+                                            BorderRadius.circular(12)),
+                                    child: const Center(
+                                      child: Text("Book Now",
+                                          style:
+                                              TextStyle(color: Colors.white)),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ]),
+                      ),
                     )
                   ],
                 ),
@@ -328,8 +413,8 @@ class _ProfileaboutState extends State<Profileabout> {
                     ),
                     InkWell(
                       onTap: () {
-                        Get.to(const Bookappointment(),
-                            transition: Transition.rightToLeft);
+                        // Get.to( Bookappointment(),
+                        //     transition: Transition.rightToLeft);
                       },
                       child: IntroButton(
                           title: 'Book Offline Visit', height: 56, width: 335),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:medical_u/constant/app_asset.dart';
+import 'package:medical_u/controller/home_controller.dart';
 
 class Profilepatient extends StatefulWidget {
   const Profilepatient({Key? key}) : super(key: key);
@@ -10,8 +11,19 @@ class Profilepatient extends StatefulWidget {
 }
 
 class _ProfilepatientState extends State<Profilepatient> {
+
+  HomeController controller = Get.put(HomeController());
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController addressController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+     nameController.text = controller.profileModel!.doctorModel != null ? controller.profileModel!.doctorModel!.userModel.name.toString() : controller.profileModel!.patientModel!.user.name.toString() ;
+     emailController.text = controller.profileModel!.doctorModel != null ? controller.profileModel!.doctorModel!.userModel.email.toString() : controller.profileModel!.patientModel!.user.email.toString() ;
+     phoneController.text = controller.profileModel!.doctorModel != null ? controller.profileModel!.doctorModel!.phoneNumber.toString() : controller.profileModel!.patientModel!.mobile.toString() ;
+     addressController.text = controller.profileModel!.doctorModel != null ? 'Damas' : controller.profileModel!.patientModel!.address.toString() ;
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -90,6 +102,7 @@ class _ProfilepatientState extends State<Profilepatient> {
               width: 335,
               height: 52,
               child: TextField(
+                controller: nameController,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(
@@ -115,10 +128,12 @@ class _ProfilepatientState extends State<Profilepatient> {
                   fontWeight: FontWeight.w400),
             )),
             Container(
+
               margin: const EdgeInsets.only(bottom: 0),
               width: 335,
               height: 52,
               child: TextField(
+                controller: emailController ,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(
@@ -148,6 +163,7 @@ class _ProfilepatientState extends State<Profilepatient> {
               width: 335,
               height: 52,
               child: TextField(
+                controller: phoneController,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(
@@ -178,6 +194,7 @@ class _ProfilepatientState extends State<Profilepatient> {
               width: 335,
               height: 52,
               child: TextField(
+                controller: addressController,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(

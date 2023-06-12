@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:medical_u/controller/home_controller.dart';
 
 import '../../constant/app_asset.dart';
 import '../Appointments/Appointments.dart';
@@ -168,7 +169,7 @@ class _BottomfourState extends State<Bottomfour> {
                   Expanded(
                     child: InkWell(
                       onTap: () {
-                        Get.to(const Profilepatient(),transition: Transition.rightToLeft);
+                         Get.to(const Profilepatient(),transition: Transition.rightToLeft);
                       },
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -275,7 +276,7 @@ class _BottomfourState extends State<Bottomfour> {
                   Expanded(
                     child: InkWell(
                       onTap: () {
-                        Get.to(const Appointments(),transition: Transition.rightToLeft);
+                        Get.to( Appointments(),transition: Transition.rightToLeft);
                       },
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
