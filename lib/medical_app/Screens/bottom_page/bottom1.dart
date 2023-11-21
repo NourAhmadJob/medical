@@ -398,161 +398,177 @@ class _BottomoneState extends State<Bottomone> {
                               ),
                             ],
                           ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              physics: const BouncingScrollPhysics(),
-                              child: Row(
-                                children: List.generate(
-                                    HomeController.UpComingList.length,
-                                    (index) => Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 15, horizontal: 5),
-                                          child: InkWell(
-                                            onTap: () {
-                                              Get.to(Appointments(),
-
-                                                  transition:
-                                                      Transition.rightToLeft);
-                                            },
-                                            child: Container(
-                                                height: 140,
-                                                width: 287,
-                                                decoration: BoxDecoration(
-                                                    boxShadow: const [
-                                                      BoxShadow(
-                                                          color: Colors.black12,
-                                                          blurRadius: 10,
-                                                          offset: Offset(5, 6)),
-                                                    ],
-                                                    color: Colors.white,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            20)),
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    Center(
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        children: [
-                                                          CircleAvatar(
-                                                            maxRadius: 25,
-                                                            // backgroundImage:
-                                                            //     AssetImage(upcoming[index]),
-                                                          ),
-                                                          Column(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .start,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Padding(
-                                                                padding:
-                                                                    const EdgeInsets
-                                                                            .only(
-                                                                        left:
-                                                                            10),
-                                                                child: Row(
-                                                                  children: [
-                                                                    Text(
-                                                                        HomeController
-                                                                            .UpComingList[
-                                                                                index]
-                                                                            .doctor
-                                                                            .name
-                                                                            .toString(),
-                                                                        style: TextStyle(
-                                                                            fontWeight:
-                                                                                FontWeight.w600,
-                                                                            color: Colors.black,
-                                                                            fontSize: 14)),
-                                                                    SizedBox(
-                                                                      width: 60,
-                                                                    ),
-                                                                    Icon(
-                                                                      Icons
-                                                                          .more_vert,
-                                                                      color: Colors
-                                                                          .black,
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                              Padding(
-                                                                padding: EdgeInsets
-                                                                    .only(
-                                                                        left:
-                                                                            10),
-                                                                child: Text(
-                                                                    HomeController
-                                                                        .UpComingList[
-                                                                            index]
-                                                                        .doctor
-                                                                        .email
-                                                                        .toString(),
-                                                                    style: TextStyle(
+                          if (HomeController.UpComingList.length != 0)
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              child: SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                physics: const BouncingScrollPhysics(),
+                                child: Row(
+                                  children: List.generate(
+                                      HomeController.UpComingList.length,
+                                      (index) => Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 15, horizontal: 5),
+                                            child: InkWell(
+                                              onTap: () {
+                                                Get.to(Appointments(),
+                                                    transition:
+                                                        Transition.rightToLeft);
+                                              },
+                                              child: Container(
+                                                  height: 140,
+                                                  width: 287,
+                                                  decoration: BoxDecoration(
+                                                      boxShadow: const [
+                                                        BoxShadow(
+                                                            color:
+                                                                Colors.black12,
+                                                            blurRadius: 10,
+                                                            offset:
+                                                                Offset(5, 6)),
+                                                      ],
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20)),
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Center(
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            CircleAvatar(
+                                                              maxRadius: 25,
+                                                              // backgroundImage:
+                                                              //     AssetImage(upcoming[index]),
+                                                            ),
+                                                            Column(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .start,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Padding(
+                                                                  padding: const EdgeInsets
+                                                                          .only(
+                                                                      left: 10),
+                                                                  child: Row(
+                                                                    children: [
+                                                                      Text(
+                                                                          HomeController
+                                                                              .UpComingList[
+                                                                                  index]
+                                                                              .doctor
+                                                                              .name
+                                                                              .toString(),
+                                                                          style: TextStyle(
+                                                                              fontWeight: FontWeight.w600,
+                                                                              color: Colors.black,
+                                                                              fontSize: 14)),
+                                                                      SizedBox(
+                                                                        width:
+                                                                            60,
+                                                                      ),
+                                                                      Icon(
+                                                                        Icons
+                                                                            .more_vert,
                                                                         color: Colors
                                                                             .black,
-                                                                        fontWeight:
-                                                                            FontWeight
-                                                                                .w400,
-                                                                        fontSize:
-                                                                            14)),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ],
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                                Padding(
+                                                                  padding: EdgeInsets
+                                                                      .only(
+                                                                          left:
+                                                                              10),
+                                                                  child: Text(
+                                                                      HomeController
+                                                                          .UpComingList[
+                                                                              index]
+                                                                          .doctor
+                                                                          .email
+                                                                          .toString(),
+                                                                      style: TextStyle(
+                                                                          color: Colors
+                                                                              .black,
+                                                                          fontWeight: FontWeight
+                                                                              .w400,
+                                                                          fontSize:
+                                                                              14)),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ],
+                                                        ),
                                                       ),
-                                                    ),
-                                                    Container(
-                                                      margin:
-                                                          const EdgeInsets.only(
-                                                              top: 20,
-                                                              right: 80),
-                                                      width: 161,
-                                                      height: 30,
-                                                      decoration: BoxDecoration(
-                                                          color: const Color(
-                                                              0xffEEEEFF),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      10)),
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        children: const [
-                                                          Icon(
-                                                              Icons.access_time,
-                                                              size: 12),
-                                                          Text(
-                                                              " Thu, Dec at 10:00 am",
-                                                              style: TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  fontSize:
-                                                                      12)),
-                                                        ],
+                                                      Container(
+                                                        margin: const EdgeInsets
+                                                                .only(
+                                                            top: 20, right: 80),
+                                                        width: 161,
+                                                        height: 30,
+                                                        decoration: BoxDecoration(
+                                                            color: const Color(
+                                                                0xffEEEEFF),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10)),
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: const [
+                                                            Icon(
+                                                                Icons
+                                                                    .access_time,
+                                                                size: 12),
+                                                            Text(
+                                                                " Thu, Dec at 10:00 am",
+                                                                style: TextStyle(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600,
+                                                                    fontSize:
+                                                                        12)),
+                                                          ],
+                                                        ),
                                                       ),
-                                                    ),
-                                                  ],
-                                                )),
-                                          ),
-                                        )),
+                                                    ],
+                                                  )),
+                                            ),
+                                          )),
+                                ),
+                              ),
+                            )
+                          else
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 100.0, left: 100, right: 60),
+                              child: Center(
+                                child: Text(
+                                  "Not Found Coming in this doctor",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18.0,
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
                         ],
                       );
               })),

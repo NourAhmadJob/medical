@@ -65,9 +65,7 @@ class _SignInState extends State<SignIn> {
                           children: const [
                             Padding(
                               padding: EdgeInsets.only(top: 25, left: 25),
-                              child: Icon(
-                                Icons.close,
-                              ),
+
                             ),
                           ],
                         ),

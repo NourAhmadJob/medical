@@ -1,4 +1,4 @@
-const api_constant = "http://192.168.201.254:8000/api";
+const api_constant = "http://192.168.202.254:8000/api";
 const login_in= "$api_constant/Api_login";
 const sign_up ="$api_constant/register";
 const depApi = "$api_constant/departments";
